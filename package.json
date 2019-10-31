@@ -1,0 +1,23 @@
+{
+  "name": "books-library",
+  "version": "1.0.0",
+  "description": "books-library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melliEve/books-library.git"
+  },
+  "author": "melliEve",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/melliEve/books-library/issues"
+  },
+  "homepage": "https://github.com/melliEve/books-library#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.7.7"
+  }
+}
