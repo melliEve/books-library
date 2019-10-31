@@ -3,7 +3,12 @@ const mongoose = require('mongoose');
 
 // Connect to db
 let dbName = 'famous_books'
-mongoose.connect(`mongodb://localhost/${dbName}`);
+mongoose.connect(`mongodb://localhost/${dbName}`,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  },
+);
 global.db = mongoose.connection;
 db.on('error', () => console.log('Could not connect to DB'));
 db.once('open', () => {
@@ -14,8 +19,8 @@ db.once('open', () => {
 // Import our Book mongoose model
 const Book = require('./Book');
 
-function startWebServer(){
-  
+function startWebServer() {
+
   // Create a web server
   const app = express();
 
@@ -25,13 +30,13 @@ function startWebServer(){
     res.json(books);
   });
 
-  app.get('/json/books/:id', async(req,res) => {
-      let book = await Book.findOne({_id: req.params.id}).catch((err)=>{
-        // Catching here to prevent server crash
-        // if cast to object id for id fails
-        res.json({error: err});
-      });
-      res.json(book !== null ? book : {error: 'No such book'});
+  app.get('/json/books/:id', async (req, res) => {
+    let book = await Book.findOne({ _id: req.params.id }).catch((err) => {
+      // Catching here to prevent server crash
+      // if cast to object id for id fails
+      res.json({ error: err });
+    });
+    res.json(book !== null ? book : { error: 'No such book' });
   });
 
 
